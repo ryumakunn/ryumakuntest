@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     const timeDisplay = document.getElementById('time');
+    const azimuthDisplay = document.getElementById('azimuth');
     const permissionButton = document.getElementById('permission');
 
     let watchID;
