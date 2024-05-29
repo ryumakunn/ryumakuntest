@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>端末の角度検知</title>
+    <title>日時計</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
         }
-        #orientation {
+        #time {
             font-size: 24px;
+            margin-top: 20px;
+        }
+        #permission {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>端末の角度検知</h1>
-    <div id="orientation">角度を検知中...</div>
+    <h1>日時計</h1>
+    <div>端末を太陽の方角に向けてください。</div>
+    <div id="time">時間を計算中...</div>
+    <button id="permission">角度検知を許可する</button>
 
     <script src="script.js"></script>
 </body>
