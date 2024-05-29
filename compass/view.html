@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>コンパス</title>
+    <title>カスタムコンパス</title>
     <style>
         body {
             display: flex;
@@ -39,6 +39,12 @@
         }
         #angle {
             font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #setNorth {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -47,15 +53,15 @@
         <div id="arrow"></div>
     </div>
     <div id="angle">0°</div>
+    <button id="setNorth">北を設定</button>
 
     <script>
+        let baseAngle = null;
+
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(event) {
-                let alpha = event.alpha; // 方位
-                let beta = event.beta; // 前後の傾き
-                let gamma = event.gamma; // 左右の傾き
+                let alpha = event.alpha;
 
-                // alpha (方位) が未定義または null でないことを確認
                 if (alpha !== null) {
                     // デバイスの向きがポートレートモードでない場合の補正
                     if (window.orientation === 90) {
@@ -65,19 +71,31 @@
                     } else if (window.orientation === 180) {
                         alpha += 180;
                     }
-                    
-                    alpha = alpha % 360; // 360度に収める
+
+                    alpha = alpha % 360;
                     if (alpha < 0) {
-                        alpha += 360; // 正の値に変換
+                        alpha += 360;
                     }
 
-                    let compassArrow = document.getElementById('arrow');
-                    let angleDisplay = document.getElementById('angle');
-
-                    compassArrow.style.transform = 'rotate(' + alpha + 'deg)';
-                    angleDisplay.textContent = Math.round(alpha) + '°';
+                    if (baseAngle !== null) {
+                        let adjustedAlpha = (alpha - baseAngle + 360) % 360;
+                        document.getElementById('arrow').style.transform = 'rotate(' + adjustedAlpha + 'deg)';
+                        document.getElementById('angle').textContent = Math.round(adjustedAlpha) + '°';
+                    } else {
+                        document.getElementById('arrow').style.transform = 'rotate(' + alpha + 'deg)';
+                        document.getElementById('angle').textContent = Math.round(alpha) + '°';
+                    }
                 }
             }, true);
+
+            document.getElementById('setNorth').addEventListener('click', function() {
+                baseAngle = window.alpha;
+                if (baseAngle === null) {
+                    alert('センサーのデータが利用できません。');
+                } else {
+                    alert('北の方向が設定されました。');
+                }
+            });
         } else {
             alert("デバイスの方向センサーがサポートされていません。");
         }
