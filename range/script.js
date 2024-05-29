@@ -2,24 +2,20 @@
 
 // 太陽が特定の角度にある時間を取得する関数
 function getApproximateTimeFromAlpha(alpha) {
-    // αが0度から360度までの範囲で、0度を北と仮定
-    // 太陽が正南にあるとき、つまり180度の時を12:00と仮定
-    // 1度ごとに約4分の時間差があると計算（360度/24時間=15度/時間, 1度=4分） 
-    
-    // 太陽が南にある時刻（12:00）からの時間差を計算
-    const minutesFromNoon = (alpha - 180) * 4;
+    // 画像に基づき、太陽の位置と時間の関係を調整
+    // 南 (180度) が正午、東 (90度) が午前6時、西 (270度) が午後6時とする
 
-    // 現在の時間を基準にする（表示するため）
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
+    // 角度に応じた時間を計算する
+    let hours = (alpha - 90) / 15; // 15度が1時間に相当
 
-    // 基準時刻に計算された時間差を加算
-    const totalMinutes = (hours * 60 + minutes) + minutesFromNoon;
+    // 負の時間を補正
+    if (hours < 0) {
+        hours += 24;
+    }
 
-    // 日時計の時間を計算
-    let displayHours = Math.floor(totalMinutes / 60) % 24;
-    let displayMinutes = Math.round(totalMinutes % 60 / 10) * 10; // 10分刻みに丸める
+    // 現在時刻を基準とせず、角度から直接計算された時刻を使用
+    let displayHours = Math.floor(hours) % 24;
+    let displayMinutes = Math.round((hours % 1) * 60 / 10) * 10; // 10分刻みに丸める
 
     // 時間と分が60または0を越えた場合の調整
     if (displayMinutes >= 60) {
