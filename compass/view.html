@@ -51,12 +51,32 @@
     <script>
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(event) {
-                let alpha = event.alpha;
-                let compassArrow = document.getElementById('arrow');
-                let angleDisplay = document.getElementById('angle');
+                let alpha = event.alpha; // 方位
+                let beta = event.beta; // 前後の傾き
+                let gamma = event.gamma; // 左右の傾き
 
-                compassArrow.style.transform = 'rotate(' + alpha + 'deg)';
-                angleDisplay.textContent = Math.round(alpha) + '°';
+                // alpha (方位) が未定義または null でないことを確認
+                if (alpha !== null) {
+                    // デバイスの向きがポートレートモードでない場合の補正
+                    if (window.orientation === 90) {
+                        alpha += 90;
+                    } else if (window.orientation === -90) {
+                        alpha -= 90;
+                    } else if (window.orientation === 180) {
+                        alpha += 180;
+                    }
+                    
+                    alpha = alpha % 360; // 360度に収める
+                    if (alpha < 0) {
+                        alpha += 360; // 正の値に変換
+                    }
+
+                    let compassArrow = document.getElementById('arrow');
+                    let angleDisplay = document.getElementById('angle');
+
+                    compassArrow.style.transform = 'rotate(' + alpha + 'deg)';
+                    angleDisplay.textContent = Math.round(alpha) + '°';
+                }
             }, true);
         } else {
             alert("デバイスの方向センサーがサポートされていません。");
