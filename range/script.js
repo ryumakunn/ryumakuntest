@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
             time = '時間を特定できません';
         }
         timeDisplay.textContent = time;
+        azimuthDisplay.textContent = `方角: ${azimuth.toFixed(2)} 度`;
     }
 
     function handleOrientation(event) {
