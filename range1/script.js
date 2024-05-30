@@ -1,5 +1,8 @@
 // script.js
 
+let currentHeading = 0;
+let initialNorth = 0;
+
 document.getElementById('setNorth').addEventListener('click', () => {
     initialNorth = currentHeading;
     alert('北を設定しました');
