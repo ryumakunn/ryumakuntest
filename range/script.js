@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function showTimeForDirection(azimuth) {
         let time;
+        let min;
         if(azimuth >= 0 && azimuth < 15){
             time='0';
             if(azimuth>=0 && azimuth<2.5){
