@@ -1,6 +1,6 @@
 // script.js
 
-let defo = 0;
+let set = 0;
 
 document.getElementById('setNorth').addEventListener('click', () => {
     alert('北設定しました');
@@ -8,7 +8,7 @@ document.getElementById('setNorth').addEventListener('click', () => {
 });
 
 window.addEventListener('deviceorientation', (event) => {
-    const alpha = event.alpha; // Z軸 (0から360度)
+    let alpha = event.alpha; // Z軸 (0から360度)
     console.log((alpha=alpha-set));
 
     document.getElementById('orientation').innerText =
