@@ -13,5 +13,6 @@ window.addEventListener('deviceorientation', (event) => {
     console.log((colalpha=alpha-set));
 
     document.getElementById('orientation').innerText =
-        `Alpha (Z軸): ${alpha.toFixed(2)}°\n` ;
+        `Alpha (Z軸): ${alpha.toFixed(2)}°\n` ,
+        `set (Z軸): ${set.toFixed(2)}°\n` ;
 });
