@@ -8,8 +8,9 @@ document.getElementById('setNorth').addEventListener('click', () => {
 });
 
 window.addEventListener('deviceorientation', (event) => {
-    let alpha = event.alpha; // Z軸 (0から360度)
-    console.log((alpha=alpha-set));
+    const alpha = event.alpha; // Z軸 (0から360度)
+    let colalpha
+    console.log((colalpha=alpha-set));
 
     document.getElementById('orientation').innerText =
         `Alpha (Z軸): ${alpha.toFixed(2)}°\n` ;
