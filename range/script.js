@@ -10,9 +10,9 @@ window.addEventListener('DOMContentLoaded', () => {
         if (azimuth >= 160 && azimuth < 190) {
             time = '正午';
         } else if (azimuth >= 90 && azimuth < 160) {
-            time = '午前';
-        } else if (azimuth >= 190 && azimuth < 270) {
             time = '午後';
+        } else if (azimuth >= 190 && azimuth < 270) {
+            time = '午前';
         } else {
             time = '時間を特定できませ';
         }
