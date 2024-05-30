@@ -1,4 +1,10 @@
 // script.js
+
+document.getElementById('setNorth').addEventListener('click', () => {
+    initialNorth = currentHeading;
+    alert('北を設定しました');
+});
+
 window.addEventListener('deviceorientation', (event) => {
     const alpha = event.alpha; // Z軸 (0から360度)
     const beta = event.beta;   // X軸 (-180から180度)
