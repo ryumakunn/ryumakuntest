@@ -375,6 +375,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
        
         timeDisplay.textContent = time;
+        minDisplay.textContent = min;
         azimuthDisplay.textContent = `方角: ${azimuth.toFixed(2)} 度`;
     }
 
