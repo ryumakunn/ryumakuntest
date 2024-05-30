@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
         } else if (azimuth >= 190 && azimuth < 270) {
             time = '午後';
         } else {
-            time = '時間を特定できません';
+            time = '時間を特定できませ';
         }
         timeDisplay.textContent = time;
         azimuthDisplay.textContent = `方角: ${azimuth.toFixed(2)} 度`;
