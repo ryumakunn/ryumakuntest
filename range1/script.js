@@ -3,7 +3,7 @@
 let defo = 0;
 
 document.getElementById('setNorth').addEventListener('click', () => {
-    alert('北を設定しました');
+    alert('北設定しました');
     console.log((set=alpha));
 });
 
