@@ -4,7 +4,10 @@ let set = 0;
 
 document.getElementById('setNorth').addEventListener('click', () => {
     alert('北を設定しました');
-    console.log((set=alpha));
+    window.addEventListener('deviceorientation', (event) => {
+        const alpha = event.alpha; // Z軸 (0から360度)
+        console.log((set=colalpha));
+    });
 });
 
 window.addEventListener('deviceorientation', (event) => {
