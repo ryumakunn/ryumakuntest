@@ -8,19 +8,58 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function showTimeForDirection(azimuth) {
         let time;
-          if (azimuth === 180) {
-            time = 12; // 180度を正午 (12時) に設定
-        } else if (azimuth > 165 && azimuth < 180) {
-            time = 12 + (180 - azimuth) / 15; // 165度を13時、180度を12時に設定
-        } else if (azimuth > 150 && azimuth <= 165) {
-            time = 14 - (165 - azimuth) / 15; // 150度を14時、165度を13時に設定
-        } else {
-        // その他の一般的な変換
-        // 180度の時刻を12時とし、それを基準に360度全体を24時間にスケーリング
-        const adjustedAzimuth = (azimuth + 180) % 360; // 180度を基準に調整
-        time = (adjustedAzimuth / 360) * 24;
+        if(azimuth >= 0 && azimuth < 15){
+            time='24';
+        }else if(azimuth >= 15 && azimuth < 30){
+            time='23';
+        }else if(azimuth >= 30 && azimuth < 45){
+            time='22';
+        }else if(azimuth >= 45 && azimuth < 60){
+            time='21';
+        }else if(azimuth >= 60 && azimuth < 75){
+            time='20';
+        }else if(azimuth >= 75 && azimuth < 90){
+            time='19';
+        }else if(azimuth >= 90 && azimuth < 105){
+            time='23';
+        }else if(azimuth >= 105 && azimuth < 120){
+            time='22';
+        }else if(azimuth >= 120 && azimuth < 135){
+            time='21';
+        }else if(azimuth >= 135 && azimuth < 150){
+            time='20';
+        }else if(azimuth >= 150 && azimuth < 165){
+            time='19';
+        }else if(azimuth >= 165 && azimuth < 180){
+            time='21';
+        }else if(azimuth >= 180 && azimuth < 195){
+            time='20';
+        }else if(azimuth >= 195 && azimuth < 210){
+            time='19';
+        }else if(azimuth >= 210 && azimuth < 225){
+            time='23';
+        }else if(azimuth >= 225 && azimuth < 240){
+            time='22';
+        }else if(azimuth >= 240 && azimuth < 255){
+            time='21';
+        }else if(azimuth >= 255 && azimuth < 270){
+            time='20';
+        }else if(azimuth >= 270 && azimuth < 285){
+            time='19';
+        }else if(azimuth >= 285 && azimuth < 300){
+            time='22';
+        }else if(azimuth >= 300 && azimuth < 315){
+            time='21';
+        }else if(azimuth >= 315 && azimuth < 330){
+            time='20';
+        }else if(azimuth >= 330 && azimuth < 345){
+            time='19';
+        }else if(azimuth >= 345 && azimuth < 360){
+            time='22';
+        }else{
+            time='時間を特定できません';
         }
-        
+       
         timeDisplay.textContent = time;
         azimuthDisplay.textContent = `方角: ${azimuth.toFixed(2)} 度`;
     }
