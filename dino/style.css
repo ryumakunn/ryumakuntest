@@ -27,7 +27,7 @@ body {
     width: 20px;
     height: 50px;
     background-color: red;
-    animation: moveCactus 2s linear infinite;
+    animation-play-state: paused; 
 }
 
 @keyframes moveCactus {
