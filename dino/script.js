@@ -40,7 +40,7 @@ function startTimer() {
     timerInterval = setInterval(() => {
         const elapsedTime = Date.now() - startTime; // 経過時間(ms)を計算
         timerDisplay.textContent = `Time: ${elapsedTime} ms`; // タイマーを更新
-    }, 10);
+    }, 100);
 }
 
 // 障害物との衝突を検知
