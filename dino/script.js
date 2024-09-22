@@ -1,10 +1,10 @@
 const dino = document.getElementById('dino');
 const cactus = document.getElementById('cactus');
+const timerDisplay = document.getElementById('timer'); // タイマー表示要素を取得
 let isInvincible = false; // 無敵状態のフラグ
 let isGameStarted = false; // ゲームがスタートしているかどうかのフラグ
 let startTime = 0; // ゲーム開始時間
 let timerInterval; // タイマー用の変数
-
 
 // スペースキーを押したらゲームスタート＆無敵モード処理
 document.addEventListener('keydown', function (event) {
@@ -32,7 +32,7 @@ function becomeInvincible() {
     setTimeout(() => {
         isInvincible = false;
         dino.style.backgroundColor = 'green'; // 無敵モード解除後に元の色に戻す
-    }, 100); // 1秒間無敵
+    }, 1000); // 1秒間無敵
 }
 
 // タイマーをスタートする処理
