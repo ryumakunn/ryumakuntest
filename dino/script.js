@@ -5,15 +5,6 @@ let isGameStarted = false; // ゲームがスタートしているかどうか�
 let startTime = 0; // ゲーム開始時間
 let timerInterval; // タイマー用の変数
 
-// 初期状態でタイマーを表示
-const timerDisplay = document.createElement('div');
-timerDisplay.id = 'timer';
-timerDisplay.style.position = 'absolute';
-timerDisplay.style.top = '10px';
-timerDisplay.style.left = '10px';
-timerDisplay.style.fontSize = '20px';
-timerDisplay.textContent = `Time: 0 ms`; // 初期状態で0msを表示
-document.body.appendChild(timerDisplay);
 
 // スペースキーを押したらゲームスタート＆無敵モード処理
 document.addEventListener('keydown', function (event) {
