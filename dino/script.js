@@ -59,8 +59,6 @@ let isAlive = setInterval(function () {
 // ゲームオーバー時の処理
 function gameOver() {
     alert("Game Over");
-    const elapsedTime = Date.now() - startTime; // 最終的な経過時間
-    alert(`You survived for ${elapsedTime} ms!`);
     clearInterval(timerInterval); // タイマーを停止
     resetGame();
 }
