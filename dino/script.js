@@ -5,6 +5,16 @@ let isGameStarted = false; // ゲームがスタートしているかどうか�
 let startTime = 0; // ゲーム開始時間
 let timerInterval; // タイマー用の変数
 
+// 初期状態でタイマーを表示
+const timerDisplay = document.createElement('div');
+timerDisplay.id = 'timer';
+timerDisplay.style.position = 'absolute';
+timerDisplay.style.top = '10px';
+timerDisplay.style.left = '10px';
+timerDisplay.style.fontSize = '20px';
+timerDisplay.textContent = `Time: 0 ms`; // 初期状態で0msを表示
+document.body.appendChild(timerDisplay);
+
 // スペースキーを押したらゲームスタート＆無敵モード処理
 document.addEventListener('keydown', function (event) {
     if (event.key === ' ') {
@@ -31,22 +41,14 @@ function becomeInvincible() {
     setTimeout(() => {
         isInvincible = false;
         dino.style.backgroundColor = 'green'; // 無敵モード解除後に元の色に戻す
-    }, 10); // 1秒間無敵
+    }, 1000); // 1秒間無敵
 }
 
 // タイマーをスタートする処理
 function startTimer() {
-    const timerDisplay = document.createElement('div');
-    timerDisplay.id = 'timer';
-    timerDisplay.style.position = 'absolute';
-    timerDisplay.style.top = '10px';
-    timerDisplay.style.left = '10px';
-    timerDisplay.style.fontSize = '20px';
-    document.body.appendChild(timerDisplay);
-
     timerInterval = setInterval(() => {
         const elapsedTime = Date.now() - startTime; // 経過時間(ms)を計算
-        timerDisplay.textContent = `Time: ${elapsedTime} ms`;
+        timerDisplay.textContent = `Time: ${elapsedTime} ms`; // タイマーを更新
     }, 10);
 }
 
@@ -77,8 +79,5 @@ function resetGame() {
     isGameStarted = false;
     dino.style.backgroundColor = 'green'; // 恐竜の色をリセット
     cactus.style.animationPlayState = 'paused'; // 障害物の動きを停止
-    const timerDisplay = document.getElementById('timer');
-    if (timerDisplay) {
-        timerDisplay.remove(); // タイマー表示を削除
-    }
+    timerDisplay.textContent = `Time: 0 ms`; // タイマーをリセットして0に戻す
 }
