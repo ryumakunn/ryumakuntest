@@ -1,109 +1,51 @@
-const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+const dino = document.getElementById('dino');
+const cactus = document.getElementById('cactus');
+let isJumping = false;
+let gravity = 0.9;
+let position = 0;
 
-    let isJumping = false;
-    let jumpHeight = 0;
-    let elapsedTime = 0;
-
-    const player = {
-      x: 100,
-      y: canvas.height - 50,
-      size: 40,
-      draw() {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(this.x, this.y - this.size - jumpHeight, this.size, this.size);
-      },
-      jump() {
+// キー押下でジャンプ処理を実行
+document.addEventListener('keydown', function (event) {
+    if (event.key === ' ') {
         if (!isJumping) {
-          isJumping = true;
-          jumpHeight = 0;
+            jump();
         }
-      }
-    };
-
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
-        player.jump();
-      }
-    });
-
-    class Obstacle {
-      constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-      }
-
-      draw() {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.x, this.y - this.height, this.width, this.height);
-      }
-
-      update() {
-        this.x -= 5;
-
-        if (this.x + this.width < 0) {
-          this.x = canvas.width + Math.random() * 800;
-        }
-      }
     }
+});
 
-    const obstacles = [
-      new Obstacle(canvas.width, canvas.height - 50, 40, 60),
-      new Obstacle(canvas.width + 400, canvas.height - 50, 40, 60),
-    ];
+function jump() {
+    let count = 0;
+    let upInterval = setInterval(() => {
+        if (count === 15) {
+            clearInterval(upInterval);
 
-    function checkCollision(player, obstacle) {
-      const playerTop = player.y - player.size - jumpHeight;
-      const playerBottom = player.y - jumpHeight;
-      const playerLeft = player.x;
-      const playerRight = player.x + player.size;
-
-      const obstacleTop = obstacle.y - obstacle.height;
-      const obstacleBottom = obstacle.y;
-      const obstacleLeft = obstacle.x;
-      const obstacleRight = obstacle.x + obstacle.width;
-
-      return (
-        playerBottom > obstacleTop &&
-        playerTop < obstacleBottom &&
-        playerRight > obstacleLeft &&
-        playerLeft < obstacleRight
-      );
-    }
-
-    function gameLoop(timestamp) {
-      elapsedTime = Math.floor(timestamp / 1000);
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      if (isJumping) {
-        jumpHeight += 5;
-        if (jumpHeight > 100) {
-          isJumping = false;
+            // 落下する処理
+            let downInterval = setInterval(() => {
+                if (count === 0) {
+                    clearInterval(downInterval);
+                    isJumping = false;
+                }
+                position -= 5;
+                count--;
+                dino.style.bottom = position + 'px';
+            }, 20);
         }
-      } else {
-        if (jumpHeight > 0) {
-          jumpHeight -= 5;
-        }
-      }
 
-      player.draw();
-      obstacles.forEach(obstacle => {
-        obstacle.draw();
-        obstacle.update();
-      });
+        // 上昇する処理
+        isJumping = true;
+        position += 5;
+        count++;
+        dino.style.bottom = position + 'px';
+    }, 20);
+}
 
-      ctx.fillStyle = 'black';
-      ctx.font = '20px Arial';
-      ctx.fillText(`Time: ${elapsedTime}s`, 10, 30);
+// 障害物との衝突を検知
+let isAlive = setInterval(function () {
+    let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("bottom"));
+    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("right"));
 
-      if (obstacles.some(obstacle => checkCollision(player, obstacle))) {
-        console.log('Game Over');
-      } else {
-        requestAnimationFrame(gameLoop);
-      }
+    // 衝突判定
+    if (cactusLeft < 70 && cactusLeft > 50 && dinoTop <= 50) {
+        alert("Game Over");
     }
-
-    requestAnimationFrame(gameLoop);
+}, 10);
