@@ -36,7 +36,7 @@ function becomeInvincible() {
     setTimeout(() => {
         isInvincible = false;
         dino.style.backgroundColor = 'green'; // 無敵モード解除後に元の色に戻す
-    }, 500); // 1秒間無敵
+    }, 1000); // 1秒間無敵
 }
         function createCactus() {
             const cactus = document.createElement('div');
@@ -63,7 +63,7 @@ function startTimer() {
     timerInterval = setInterval(() => {
         const elapsedTime = Date.now() - startTime; // 経過時間(ms)を計算
         timerDisplay.textContent = `Time: ${elapsedTime} ms`; // タイマーを更新
-    }, 100);
+    }, 1000);
 }
 
 // 障害物との衝突を検知
@@ -77,7 +77,7 @@ let isAlive = setInterval(function () {
             gameOver();
         }
     }
-}, 100);
+}, 1000);
 
 // ゲームオーバー時の処理
 function gameOver() {
