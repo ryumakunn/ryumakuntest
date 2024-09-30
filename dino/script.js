@@ -36,7 +36,7 @@ function becomeInvincible() {
     setTimeout(() => {
         isInvincible = false;
         dino.style.backgroundColor = 'green'; // 無敵モード解除後に元の色に戻す
-    }, 100); // 1秒間無敵
+    }, 500); // 1秒間無敵
 }
         function createCactus() {
             const cactus = document.createElement('div');
@@ -77,7 +77,7 @@ let isAlive = setInterval(function () {
             gameOver();
         }
     }
-}, 10);
+}, 100);
 
 // ゲームオーバー時の処理
 function gameOver() {
