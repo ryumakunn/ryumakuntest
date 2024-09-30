@@ -6,6 +6,28 @@ let isGameStarted = false; // ゲームがスタートしているかどうか�
 let startTime = 0; // ゲーム開始時間
 let timerInterval; // タイマー用の変数
 
+
+function createCactus() {
+        const cactus = document.createElement('div');
+        cactus.classList.add('cactus');
+        cactus.style.position = 'absolute';
+        cactus.style.bottom = '0';
+        cactus.style.right = '0';
+        cactus.style.width = '20px';
+        cactus.style.height = '50px';
+        cactus.style.backgroundColor = 'red';
+        cactus.style.animation = 'moveCactus 3s linear infinite';
+        
+        document.getElementById('game').appendChild(cactus);
+
+        // ランダムな間隔で次のサボテンを生成
+        const randomInterval = Math.random() * 2000 + 1000; // 1秒から3秒の間隔
+        setTimeout(createCactus, randomInterval);
+}
+
+// 最初のサボテンを生成
+createCactus();
+
 // スペースキーを押したらゲームスタート＆無敵モード処理
 document.addEventListener('keydown', function (event) {
     if (event.key === ' ') {
