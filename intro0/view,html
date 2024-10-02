@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己紹介</title>
+</head>
+<body>
+
+    <h1>自己紹介</h1>
+
+    <h2>名前</h2>
+    <p>○○さん</p>
+
+    <h2>自己紹介</h2>
+    <p>私は○○です。日本の大学でプログラミングを学んでいます。</p>
+
+    <h2>趣味</h2>
+    <p>趣味は○○と○○です。プログラミング以外にも、スポーツや音楽が好きです。</p>
+
+    <h2>将来の目標</h2>
+    <p>将来は○○分野で働きたいと思っています。技術を高め、社会に貢献することを目指しています。</p>
+
+    <footer>
+        <p>© 2024 ○○さんの自己紹介サイト</p>
+    </footer>
+
+</body>
+</html>
