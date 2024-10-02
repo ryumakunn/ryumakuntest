@@ -18,7 +18,7 @@ function becomeInvincible() {
     setTimeout(() => {
         isInvincible = false;
         dino.style.backgroundColor = 'green'; // 無敵モード解除後に元の色に戻す
-    }, 1000); // 1秒間無敵
+    }, 100); // 1秒間無敵
 }
 
 // 障害物との衝突を検知
