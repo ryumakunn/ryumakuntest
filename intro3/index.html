@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インタラクティブな自己紹介</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+        }
+
+        .greeting {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .theme-btn {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .theme-btn:hover {
+            background-color: #005b9f;
+        }
+
+        .toggle-section {
+            margin-top: 20px;
+        }
+
+        .toggle-section button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .toggle-section button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>インタラクティブな自己紹介サイト</h1>
+
+        <div class="greeting" id="greetingMessage">
+            <!-- 時間帯に応じた挨拶がここに表示される -->
+        </div>
+
+        <div class="input-section">
+            <div class="form-group">
+                <label for="nameInput">お名前を入力してください：</label>
+                <input type="text" id="nameInput" placeholder="お名前">
+            </div>
+            <div class="form-group">
+                <label for="hobbyInput">趣味を入力してください：</label>
+                <input type="text" id="hobbyInput" placeholder="趣味">
+            </div>
+            <button class="theme-btn" onclick="updateIntro()">自己紹介を更新する</button>
+        </div>
+
+        <h2 id="introHeading">自己紹介</h2>
+        <p id="introText">名前や趣味を入力して、自己紹介をカスタマイズしましょう。</p>
+
+        <div class="toggle-section">
+            <button onclick="toggleIntro()">自己紹介を表示/非表示</button>
+        </div>
+
+        <div class="theme-section">
+            <button class="theme-btn" onclick="switchTheme()">テーマカラーを切り替える</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2024 ○○さんの自己紹介サイト</p>
+    </footer>
+
+    <script>
+        // 時間帯に応じて挨拶を変える関数
+        function setGreeting() {
+            var greetingMessage = document.getElementById('greetingMessage');
+            var now = new Date();
+            var hour = now.getHours();
+
+            if (hour < 12) {
+                greetingMessage.textContent = "おはようございます！";
+            } else if (hour < 18) {
+                greetingMessage.textContent = "こんにちは！";
+            } else {
+                greetingMessage.textContent = "こんばんは！";
+            }
+        }
+
+        // 自己紹介を更新する関数
+        function updateIntro() {
+            var name = document.getElementById('nameInput').value;
+            var hobby = document.getElementById('hobbyInput').value;
+
+            var introText = document.getElementById('introText');
+            if (name && hobby) {
+                introText.textContent = "こんにちは！私は" + name + "です。趣味は" + hobby + "です。よろしくお願いします！";
+            } else {
+                introText.textContent = "名前や趣味を入力して、自己紹介をカスタマイズしましょう。";
+            }
+        }
+
+        // 自己紹介の表示/非表示を切り替える関数
+        function toggleIntro() {
+            var introSection = document.getElementById('introText');
+            if (introSection.style.display === "none") {
+                introSection.style.display = "block";
+            } else {
+                introSection.style.display = "none";
+            }
+        }
+
+        // テーマを切り替える関数
+        function switchTheme() {
+            if (document.body.style.backgroundColor === "black") {
+                document.body.style.backgroundColor = "#f4f4f9";
+                document.body.style.color = "#333";
+            } else {
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+            }
+        }
+
+        // ページ読み込み時に挨拶を設定
+        setGreeting();
+    </script>
+
+</body>
+</html>
